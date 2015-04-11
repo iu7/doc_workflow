@@ -60,7 +60,7 @@ WSGI_APPLICATION = 'frontserver.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'doc_workflow',
+        'NAME': 'mydb',
         'USER': 'root',
         'PASSWORD': 'qwerty123'
     }
@@ -87,4 +87,12 @@ STATIC_URL = '/static/'
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
+)
+
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
 )

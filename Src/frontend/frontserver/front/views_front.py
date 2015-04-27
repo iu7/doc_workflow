@@ -23,5 +23,7 @@ def login(request):
         cursor = connection.cursor()
         cursor.execute("SELECT * FROM users WHERE (email = %s OR username = %s) AND password = %s", [email, email, password])
         row = cursor.fetchall()
+        if len(row) == 0:
+            return HttpResponseRedirect("/login")
         print row
         return HttpResponse("ok")

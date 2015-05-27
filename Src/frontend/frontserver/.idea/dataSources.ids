@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="Django default" uuid="fe761f71-618f-479c-b1ad-71e4a870b5d8">
+    <database-info product="MySQL" version="5.5.43-0ubuntu0.14.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="mydb"/>
+    <table name="comment" schema="" catalog="mydb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="doc_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="text" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="fk_comment_1" columns="doc_id" ref-table="documents" ref-schema="" ref-catalog="mydb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_user_comment" columns="user_id" ref-table="users" ref-schema="" ref-catalog="mydb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_comment_1_idx" unique="false" columns="doc_id"/>
+      <index name="fk_user_comment_idx" unique="false" columns="user_id"/>
+    </table>
+    <table name="django_migrations" schema="" catalog="mydb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="app" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="applied" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="docs_to_groups" schema="" catalog="mydb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="group_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="doc_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="fk_docs_to_groups_1" columns="doc_id" ref-table="documents" ref-schema="" ref-catalog="mydb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_docs_to_groups_2" columns="group_id" ref-table="groups" ref-schema="" ref-catalog="mydb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_docs_to_groups_1_idx" unique="false" columns="doc_id"/>
+      <index name="fk_docs_to_groups_2_idx" unique="false" columns="group_id"/>
+    </table>
+    <table name="docs_to_users" schema="" catalog="mydb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="doc_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="fk_docs_to_users_1" columns="doc_id" ref-table="documents" ref-schema="" ref-catalog="mydb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_docs_to_users_2" columns="user_id" ref-table="users" ref-schema="" ref-catalog="mydb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_docs_to_users_1_idx" unique="false" columns="doc_id"/>
+      <index name="fk_docs_to_users_2_idx" unique="false" columns="user_id"/>
+    </table>
+    <table name="docs_versions" schema="" catalog="mydb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="doc_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="version" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="change_date" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="change_person" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="filename" sqlType="VARCHAR" precision="200" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="fk_docs_versions_1" columns="doc_id" ref-table="documents" ref-schema="" ref-catalog="mydb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_docs_versions_2" columns="change_person" ref-table="users" ref-schema="" ref-catalog="mydb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_docs_versions_1_idx" unique="false" columns="doc_id"/>
+      <index name="fk_docs_versions_2_idx" unique="false" columns="change_person"/>
+    </table>
+    <table name="documents" schema="" catalog="mydb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="owner" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="path" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <column name="public_date" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="status" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="fk_comment_1" table="comment" schema="" catalog="mydb" columns="doc_id"/>
+      <exported-key name="fk_docs_to_groups_1" table="docs_to_groups" schema="" catalog="mydb" columns="doc_id"/>
+      <exported-key name="fk_docs_to_users_1" table="docs_to_users" schema="" catalog="mydb" columns="doc_id"/>
+      <exported-key name="fk_docs_versions_1" table="docs_versions" schema="" catalog="mydb" columns="doc_id"/>
+    </table>
+    <table name="groups" schema="" catalog="mydb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="fk_docs_to_groups_2" table="docs_to_groups" schema="" catalog="mydb" columns="group_id"/>
+      <exported-key name="fk_group" table="user_to_groups" schema="" catalog="mydb" columns="group_id"/>
+    </table>
+    <table name="user_to_groups" schema="" catalog="mydb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="group_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="fk_group" columns="group_id" ref-table="groups" ref-schema="" ref-catalog="mydb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_user" columns="user_id" ref-table="users" ref-schema="" ref-catalog="mydb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_user_to_groups_1_idx" unique="false" columns="user_id"/>
+      <index name="fk_user_to_groups_2_idx" unique="false" columns="group_id"/>
+    </table>
+    <table name="users" schema="" catalog="mydb" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="username" sqlType="VARCHAR" precision="16" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="32" scale="0" nullable="false" jdbcType="12"/>
+      <column name="is_admin" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="group" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="fk_user_comment" table="comment" schema="" catalog="mydb" columns="user_id"/>
+      <exported-key name="fk_docs_to_users_2" table="docs_to_users" schema="" catalog="mydb" columns="user_id"/>
+      <exported-key name="fk_docs_versions_2" table="docs_versions" schema="" catalog="mydb" columns="change_person"/>
+      <exported-key name="fk_user" table="user_to_groups" schema="" catalog="mydb" columns="user_id"/>
+    </table>
+  </data-source>
+</component>

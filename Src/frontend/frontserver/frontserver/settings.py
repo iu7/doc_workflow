@@ -60,7 +60,7 @@ WSGI_APPLICATION = 'frontserver.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'doc_workflow',
+        'NAME': 'mydb',
         'USER': 'root',
         'PASSWORD': 'qwerty123'
     }

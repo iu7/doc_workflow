@@ -12,17 +12,13 @@ def add_user_view(request=None):
     response = {}
     try:
         dic = json.loads(request)
-    except():
+    except Exception:
         status.code = 4
-        return status
-
-    if get_user(dic["username"]) is not None:
+        return 4
+    if get_user(username=dic["username"]) is not None:
         status.code = 2
-        return status
+        return 2
     else:
         reg_user(dic)
-        status.code = 0
-        response["Status"] = status.to_dict()
-
-        return
+        return 0
 

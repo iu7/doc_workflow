@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import request
 from flaskext.mysql import MySQL
+from response import Response
 
 from users_views import *
 app = Flask(__name__)
@@ -14,28 +15,41 @@ mysql.init_app(app)
 
 @app.route('/')
 def hello_world():
-    return 'Hello World!'
+    return 'Hello World! <br>' \
+           'This is users_server(BACK_3)'
 
 
-@app.route('/users', methods=['POST'])       #Add user
+@app.route('/user', methods=['POST'])       #Add user
 def add_user():
+    resp = Response()
     if request.method == 'POST':
-        resp = add_user_view(request.data)
-        return resp
+        resp.code = add_user_view(request.data)
+        return str(resp)
+
 
 @app.route('/user/<int:user_id>', methods=['GET', 'PUT', 'DELETE'])
 def user_operations(user_id):
-    status = Status()
+    response = Response()
+
+    user = get_user(id=user_id)
+    if user is None:
+        response.code = 5
+        return str(response)
+
     if request.method == 'GET':
-        user = get_user(id=user_id)
-        if user is None:
-            status.code = 5
-            return
-        return get_user(id=user_id)
-    pass
+        response.code = 0
+        response.body = user.__dict__
+        return str(response)
+    if request.method == 'DELETE':
+        pass
 
 if __name__ == '__main__':
+    print "="*20
+    print 'Hello World!'
+    print 'This is users_server(BACK_3)'
+    print "="*20
     app.run(debug=True)
+
 
 
 

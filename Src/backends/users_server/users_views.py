@@ -2,8 +2,18 @@ __author__ = 'zdvitas'
 
 
 from status import Status
+from response import Response
 from mysql import *
 import json
+
+
+def get_user_list_view(data):
+    resp = Response()
+    resp.code = 0
+    result = get_user_list()
+    resp.body = result
+    return resp
+
 
 
 

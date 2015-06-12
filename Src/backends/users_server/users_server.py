@@ -19,12 +19,18 @@ def hello_world():
            'This is users_server(BACK_3)'
 
 
-@app.route('/user', methods=['POST'])       #Add user
-def add_user():
+
+
+@app.route('/users', methods=['POST', 'GET'])       #Add user
+def users():
     resp = Response()
     if request.method == 'POST':
         resp.code = add_user_view(request.data)
         return str(resp)
+    if request.method == 'GET':
+        resp = get_user_list_view(request.data)
+        return str(resp)
+
 
 
 @app.route('/user/<int:user_id>', methods=['GET', 'PUT', 'DELETE'])

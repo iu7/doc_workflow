@@ -4,6 +4,17 @@ from users_server import mysql
 from users_models import *
 
 
+def get_user_list():
+    cnx = mysql.connect()
+    cursor = cnx.cursor()
+    cursor.execute("SELECT id, username, email from users")
+    data = cursor.fetchall()
+    result = []
+    for usr in data:
+        result.append(User(data=usr).__dict__)
+    cnx.close()
+    return result
+
 def get_user(id=None, username=None):
     cnx = mysql.connect()
     cursor = cnx.cursor()
@@ -11,9 +22,9 @@ def get_user(id=None, username=None):
         cursor.execute("SELECT * from users where username='" + username + "'")
     if id is not None:
         cursor.execute("SELECT * from users where id='" + str(id) + "'")
-    cnx.close()
-    data = cursor.fetchone()
 
+    data = cursor.fetchone()
+    cnx.close()
     if data is None:
         return None
     user = User(data)

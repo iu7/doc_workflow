@@ -8,3 +8,12 @@
     margin:  auto;
     margin-top: 40px;
 }
+
+tbody {
+    text-align: center;
+    vertical-align: middle;
+}
+
+p.cell {
+    padding-top: 6px;
+}

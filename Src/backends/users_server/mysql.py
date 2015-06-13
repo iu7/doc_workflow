@@ -21,6 +21,7 @@ def auth(username=None, password=None):
     cursor = cnx.cursor()
     cursor.execute("SELECT id FROM users WHERE ((username='{0}') AND (password = '{1}'))".format(username, password))
     data = cursor.fetchone()
+    cnx.close()
     if len(data) > 0:
         return get_user(id=data[0])
     else:

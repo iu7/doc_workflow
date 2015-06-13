@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9ce617e2-8207-4e2f-842d-43d339e101f8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../backends/users_server/mysql.py" afterPath="$PROJECT_DIR$/../../backends/users_server/mysql.py" />
-    </list>
+    <list default="true" id="9ce617e2-8207-4e2f-842d-43d339e101f8" name="Default" comment="" />
     <ignored path="frontserver.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -38,24 +36,6 @@
       </PATH_ELEMENT>
       <PATH_ELEMENT>
         <option name="myItemId" value="Django default" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="Django default" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="mydb" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="users" />
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
@@ -114,8 +94,8 @@
           <file leaf-file-name="mysql.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/../../backends/users_server/mysql.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.6589018" vertical-offset="0" max-vertical-offset="1080">
-                  <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
+                <state vertical-scroll-proportion="0.37104824" vertical-offset="479" max-vertical-offset="1080">
+                  <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
                   <folding>
                     <marker date="1434155853950" expanded="true" signature="177:214" placeholder="SELECT * fro..users..." />
                     <marker date="1434155853950" expanded="true" signature="177:216" placeholder="SELECT * fro..users..." />
@@ -1288,7 +1268,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1855" y="24" width="1855" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1763,8 +1743,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../backends/users_server/mysql.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6589018" vertical-offset="0" max-vertical-offset="1080">
-          <caret line="23" column="14" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.37104824" vertical-offset="479" max-vertical-offset="1080">
+          <caret line="40" column="20" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
           <folding>
             <marker date="1434155853950" expanded="true" signature="177:214" placeholder="SELECT * fro..users..." />
             <marker date="1434155853950" expanded="true" signature="177:216" placeholder="SELECT * fro..users..." />

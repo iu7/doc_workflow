@@ -14,6 +14,23 @@ def get_user_list_view(data):
     resp.body = result
     return resp
 
+def auth_view(data):
+    resp = Response()
+    try:
+        dic = json.loads(data)
+    except Exception:
+        resp.code = 4
+        return resp
+
+    user = auth(dic["username"], dic["password"])
+    if user == None:
+        resp.code = 1
+    else:
+        resp.code = 0
+        resp.body = user.__dict__
+
+    return resp
+
 
 
 

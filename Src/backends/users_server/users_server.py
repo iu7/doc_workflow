@@ -21,16 +21,26 @@ def hello_world():
 
 
 
+@app.route("/auth", methods=['POST'])
+def auth():
+    resp = Response()
+    resp.code = 6
+    if request.method == 'POST':
+        resp = auth_view(request.data)
+        return str(resp)
+    return str(resp)
+
 @app.route('/users', methods=['POST', 'GET'])       #Add user
 def users():
     resp = Response()
+    resp.code = 6
     if request.method == 'POST':
         resp.code = add_user_view(request.data)
         return str(resp)
     if request.method == 'GET':
         resp = get_user_list_view(request.data)
         return str(resp)
-
+    return str(resp)
 
 
 @app.route('/user/<int:user_id>', methods=['GET', 'PUT', 'DELETE'])

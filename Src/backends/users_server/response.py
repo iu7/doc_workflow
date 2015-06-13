@@ -4,6 +4,7 @@ import json
 class Response:
     resp = {}
 
+
     def __init__(self, code=0, body=None):
         self.code = code
         self.body = body

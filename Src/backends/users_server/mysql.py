@@ -15,6 +15,18 @@ def get_user_list():
     cnx.close()
     return result
 
+
+def auth(username=None, password=None):
+    cnx = mysql.connect()
+    cursor = cnx.cursor()
+    cursor.execute("SELECT id FROM users WHERE ((username='{0}') AND (password = '{1}'))".format(username, password))
+    data = cursor.fetchone()
+    if len(data) > 0:
+        return get_user(id=data[0])
+    else:
+        return None
+
+
 def get_user(id=None, username=None):
     cnx = mysql.connect()
     cursor = cnx.cursor()

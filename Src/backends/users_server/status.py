@@ -14,7 +14,8 @@ class Status:
                 "Username already exist",  #2
                 "Permission error",  #3
                 "Json data error!",  #4
-                "Invalid user"]  # 5
+                "Invalid user",  # 5
+                "Invalid method"] #6
 
     def to_response(self):
         return json.dumps(self.to_dict())

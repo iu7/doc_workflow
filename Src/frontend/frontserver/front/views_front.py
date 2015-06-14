@@ -29,17 +29,22 @@ def delete_session(session):
     mc.delete(session)
     pass
 
+
+def add_doc(request):
+
+
 def home(request):
     user_id = check_session(request)
     if user_id is not None:
         context = {}
         user = get_user(id=user_id)
         user = json.loads(user)
-        if user['status']['Code'] == 0:
-            context["user"] = user["body"]
-            return render(request, "index.html", context)
-        else:
-            return HttpResponseRedirect("/login")
+        context["user"] = user["body"]
+        users = get_users()
+        users = json.loads(users)
+        context["users"] = users["body"]
+        return render(request, "index.html", context)
+
     else:
         return HttpResponseRedirect("/login")
 

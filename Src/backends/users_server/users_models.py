@@ -8,6 +8,8 @@ class User:
             self.id = data[0]
             self.username = data[1]
             self.email = data[2]
+            if len(data) > 3:
+                self.fullname = data[6]
 
     id = 0
     username = ""

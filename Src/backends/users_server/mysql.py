@@ -7,7 +7,7 @@ from users_models import *
 def get_user_list():
     cnx = mysql.connect()
     cursor = cnx.cursor()
-    cursor.execute("SELECT id, username, email from users")
+    cursor.execute("SELECT * from users")
     data = cursor.fetchall()
     result = []
     for usr in data:

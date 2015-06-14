@@ -6,9 +6,17 @@ from response import Response
 
 USERS_URL = "http://127.0.0.1:5000/"
 
+
 def get_user(id=None, username=None):
     c = httplib2.Http()
     url = USERS_URL + "user/" + str(id)
+    head, req = c.request(url, method="GET")
+    return req
+
+
+def get_users():
+    c = httplib2.Http()
+    url = USERS_URL + "users"
     head, req = c.request(url, method="GET")
     return req
 

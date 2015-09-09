@@ -31,7 +31,7 @@ def delete_session(session):
 
 
 def add_doc(request):
-
+    return
 
 def home(request):
     user_id = check_session(request)

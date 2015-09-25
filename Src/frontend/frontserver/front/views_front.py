@@ -6,13 +6,15 @@ from users import *
 import os
 
 USERS_URL = "http://127.0.0.1:5000/"
-MEMCACHED_URL = "192.168.1.140:11211"
+WORKER_URL = "http://127.0.0.1:5001/"
+MEMCACHED_URL = "127.0.0.1:11211"
 import json
 
 def check_session(request):
     if "session_id" in request.COOKIES:
         mc = memcache.Client([MEMCACHED_URL], debug=0)
         user_id = mc.get(request.COOKIES["session_id"])
+        print "User_id " + str(user_id)
         return user_id
     return None
 
@@ -60,6 +62,7 @@ def login(request):
         password = request.POST["password"]
         resp = auth(email, password)
         resp = json.loads(resp)
+        print resp
         if resp["status"]["Code"] == 0:
             session = set_session(resp["body"]["id"])
             response = HttpResponseRedirect("/")

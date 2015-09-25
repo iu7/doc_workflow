@@ -1,9 +1,9 @@
 from flask import Flask
 from flask import request
 from flaskext.mysql import MySQL
-from response import Response
 
 from users_views import *
+
 app = Flask(__name__)
 
 mysql = MySQL()

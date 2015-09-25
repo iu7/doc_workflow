@@ -1,6 +1,9 @@
 __author__ = 'zdvitas'
-from status import Status
 import json
+
+from tools.status import Status
+
+
 class Response:
     resp = {}
 

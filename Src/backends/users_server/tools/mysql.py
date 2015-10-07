@@ -44,6 +44,21 @@ def get_user(id=None, username=None):
     return user
 
 
+def get_users_by_doc(doc_id):
+    # docs_to_users
+    cnx = mysql.connect()
+    cursor = cnx.cursor()
+    if doc_id is not None:
+        cursor.execute("SELECT * from docs_to_users where doc_id='" + str(doc_id) + "'")
+
+    data = cursor.fetchall()
+    cnx.close()
+    result = []
+    for usr in data:
+        result.append(User(data=usr).__dict__)
+    return result
+
+
 def reg_user(data):
     cnx = mysql.connect()
     cursor = cnx.cursor()

@@ -1,9 +1,11 @@
 __author__ = 'zdvitas'
 
+
+from tools.servers_uri import *
 from tools.status import Status
 from tools.response import Response
 from tools.mysql import *
-
+from tools import http
 
 def get_user_list_view(data):
     resp = Response()
@@ -11,6 +13,7 @@ def get_user_list_view(data):
     result = get_user_list()
     resp.body = result
     return resp
+
 
 def auth_view(data):
     resp = Response()
@@ -21,7 +24,7 @@ def auth_view(data):
         return resp
 
     user = auth(dic["username"], dic["password"])
-    if user == None:
+    if user is None:
         resp.code = 1
     else:
         resp.code = 0
@@ -30,6 +33,24 @@ def auth_view(data):
     return resp
 
 
+def delete_user_view(user):
+    # TODO
+    pass
+
+
+def edit_user_view(user):
+    # TODO
+    return user
+
+
+def get_users_for_view(doc_id):
+    resp = Response()
+    response_from_server = http.get(WORKER_SERVER_URL, "/document/"+str(doc_id))
+    if response_from_server is None:
+        resp.code = 4
+        return resp
+    resp.body = get_users_by_doc(doc_id)
+    return resp
 
 
 def add_user_view(request=None):

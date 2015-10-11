@@ -1,14 +1,15 @@
 from django.shortcuts import render
 from django.shortcuts import HttpResponseRedirect, HttpResponse
 from django.db import connection
+from front_documents import *
+from servers_uri import *
 import memcache
 from users import *
 import os
 
-USERS_URL = "http://127.0.0.1:5000/"
-WORKER_URL = "http://127.0.0.1:5001/"
 MEMCACHED_URL = "127.0.0.1:11211"
 import json
+
 
 def check_session(request):
     if "session_id" in request.COOKIES:
@@ -18,6 +19,7 @@ def check_session(request):
         return user_id
     return None
 
+
 def set_session(user_id):
     mc = memcache.Client([MEMCACHED_URL], debug=0)
     session = os.urandom(6).encode('hex')
@@ -25,6 +27,7 @@ def set_session(user_id):
         return session
     else:
         return False
+
 
 def delete_session(session):
     mc = memcache.Client([MEMCACHED_URL], debug=0)
@@ -34,6 +37,14 @@ def delete_session(session):
 
 def add_doc(request):
     return
+
+
+def prepare_users(users):
+    result = {}
+    for user in users:
+        result[user["id"]] = user
+    return result
+
 
 def home(request):
     user_id = check_session(request)
@@ -45,10 +56,20 @@ def home(request):
         users = get_users()
         users = json.loads(users)
         context["users"] = users["body"]
+        users = prepare_users(users["body"])
+        documents = get_all_documents()
+        for doc in documents:
+            doc["owner"] = users[doc["owner"]]
+        #
+        #TODO ForUsers
+        #
+        context["documents"] = documents
+
         return render(request, "index.html", context)
 
     else:
         return HttpResponseRedirect("/login")
+
 
 def login(request):
     if request.method == "GET":
@@ -69,6 +90,7 @@ def login(request):
             response.set_cookie("session_id", session)
             return response
         return HttpResponseRedirect("/")
+
 
 def logout(request):
     delete_session(request.COOKIES["session_id"])

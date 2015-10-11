@@ -65,17 +65,19 @@
         </tr>
     </thead>
     <tbody>
+        {% for doc in documents %}
         <tr>
-            <td><p class="cell">1</p></td>
-            <td><p class="cell">Приказ 10</p></td>
-            <td><p class="cell">Иванов</p></td>
+            <td><a href="document/{{ doc.id }}"> <p class="cell">{{ doc.id }}</p></a></td>
+            <td><p class="cell"><a href="/document/{{ doc.id }}"> {{ doc.name }}</a></p></td>
+            <td><p class="cell"><a href="/user/{{ doc.owner.id }}"> {{ doc.owner.fullname }}</a></p></td>
             <td><a tabindex="0" data-placement="bottom" class="btn bg-warning" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover"
                    data-content="Иванов</br>
                    Петров
                    сидоров">Показать</a></td>
             <td><p class="cell">Показать</p></td>
-            <td><p class="cell">21.01.2014</p></td>
+            <td><p class="cell">{{ doc.date }}</p></td>
         </tr>
+        {% endfor %}
 
     </tbody>
 </table>
@@ -98,12 +100,13 @@
                 <label for="tittle" class="control-label">Название документа</label>
                 <input type="text" class="form-control" id="tittle" name="tittle" placeholder="">
                 <label for="for" class=" control-label">Получатели</label>
-                <select name="for" class="form-control" id="for" multiple="multiple">
+                <select name="for" class="form-control" id="for" multiple="multiple" style="height: 200px" >
                               {% for user in users %}
                                <option>  {{ user.fullname }}</option>
                               {% endfor %}
                 </select>
 
+                <input type="file" class="form-control" name="datafile" size="40">
 
 
             <div class="modal-footer">
